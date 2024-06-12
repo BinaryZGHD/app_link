@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Check Platform</title>
@@ -98,5 +98,70 @@
     <h1>Check Platform : </h1>
     <p id="platform-info"></p>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Learning</title>
+  </head>
+  <body>
+    <div class="container">
+      <p id="case"></p>
+      <button onclick="openAppIGAndroid()">Open App instagram Android</button>
+    </div>
+    <div class="container">
+      <p id="caseAN"></p>
+      <button onclick="openAppEZAndroid()">Open App EZ Android</button>
+    </div>
+    <div class="container">
+      <p id="caseIS"></p>
+      <button onclick="openAppEZIOS()">Open App EZ IOS</button>
+    </div>
+    <script>
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      (function () {
+        if (isMobile) {
+          document.getElementById("case").textContent =
+            "I am using Mobile browser";
+        } else {
+          document.getElementById("case").textContent =
+            "I am using Desktop/Web browser";
+        }
+      })();
+      function openAppIGAndroid() {
+        if (isMobile) {
+          const url =
+            "intent://instagram.com/#Intent;scheme=https;package=com.instagram.android;end";
+
+          window.location.replace(url);
+        } else {
+          window.location.replace("https://www.instagram.com");
+        }
+      } 
+      function openAppEZAndroid() {
+        if (isMobile) {
+          const url =
+            "intent://fmsdev.freewillsolutions.com/#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
+
+          window.location.replace(url);
+        } else {
+          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
+        }
+      }
+      function openAppEZIOS() {
+        if (isMobile) {
+          const url =
+            "intent://instagram.com/#Intent;scheme=https;package=com.instagram.android;end";
+
+          window.location.replace(url);
+        } else {
+          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
+        }
+      }
+    </script>
+  </body>
 </html>
- 
