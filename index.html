@@ -14,7 +14,15 @@
     </div>
     <div class="container">
       <p id="caseAN"></p>
-      <button onclick="openAppEZAndroid()">Open App EZ Android</button>
+      <button onclick="openAppEZAndroidM()">Open App EZ Android M</button>
+    </div>
+    <div class="container">
+      <p id="caseAN"></p>
+      <button onclick="openAppEZAndroid()">Open App EZ Android </button>
+    </div>
+    <div class="container">
+      <p id="caseAN"></p>
+      <button onclick="openAppEZAndroid55()">Open App EZ Android 55 </button>
     </div>
     <div class="container">
       <p id="caseIS"></p>
@@ -55,10 +63,30 @@
           window.location.replace("https://www.instagram.com");
         }
       } 
-      function openAppEZAndroid() {
+      function openAppEZAndroidM() {
         if (isMobile) {
           const url =
             "intent://fmsdev.freewillsolutions.com/mobile#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
+
+          window.location.replace(url);
+        } else {
+          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
+        }
+      }
+      function openAppEZAndroid() {
+        if (isMobile) {
+          const url =
+            "intent://fmsdev.freewillsolutions.com#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
+
+          window.location.replace(url);
+        } else {
+          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
+        }
+      }
+      function openAppEZAndroid55() {
+        if (isMobile) {
+          const url =
+            "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
 
           window.location.replace(url);
         } else {
