@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check Installation</title>
+    <title>Check Installation #1</title>
 </head>
 <body>
     
@@ -13,7 +13,7 @@
 
             if (/android/i.test(userAgent)) {
                 // สำหรับ Android
-              document.getElementById('platform-info').innerText = 'Platform:Android'  ;
+                document.getElementById('platform-info').innerText = 'Platform:Android'  ;
                 document.title = "Android Check Open App Installation";
                 checkIfAppInstalled(androidAppUrl, androidStoreUrl);
             } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
@@ -85,7 +85,7 @@
           
           window.onload = function() { 
                 // เรียกใช้งานฟังก์ชันพร้อม URL ของแอพและหน้าสตอร์
-            openAppEZ(); 
+         
                      
         openAppOrStore(
         "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end" ,
