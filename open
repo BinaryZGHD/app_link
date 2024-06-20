@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check App Installation</title>
+</head>
+<body>
+    <script>
+        function openAppOrStore(androidAppUrl, iosAppUrl, androidStoreUrl, iosStoreUrl) {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/android/i.test(userAgent)) {
+                // สำหรับ Android
+                checkIfAppInstalled(androidAppUrl, androidStoreUrl);
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // สำหรับ iOS
+                checkIfAppInstalled(iosAppUrl, iosStoreUrl);
+            } else {
+                // ไม่รองรับแพลตฟอร์มนี้
+                alert('This platform is not supported.');
+            }
+        }
+
+        function checkIfAppInstalled(appUrl, storeUrl) {
+            var start = new Date().getTime();
+            var timeout;
+
+            // ตรวจสอบการติดตั้งแอพ
+            window.location = appUrl;
+
+            // ตั้งเวลาเพื่อเช็คว่ามีการติดตั้งหรือไม่
+            timeout = setTimeout(function() {
+                var end = new Date().getTime();
+                if (end - start < 1500) {
+                    // หากไม่ได้ติดตั้ง ให้ไปที่หน้าสตอร์
+                    window.location = storeUrl;
+                }
+            }, 1000);
+        }
+
+        // เรียกใช้งานฟังก์ชันพร้อม URL ของแอพและหน้าสตอร์
+        openAppOrStore(
+        'intent://yourapp#Intent;scheme=yourapp;package=com.example.yourapp;end',
+        'yourapp://',
+        'https://play.google.com/store/apps/details?id=com.example.yourapp',
+        'https://apps.apple.com/app/yourapp/id123456789');
+    </script>
+</body>
+</html>
