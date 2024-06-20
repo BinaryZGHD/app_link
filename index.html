@@ -20,6 +20,33 @@
             }
         }
 
+
+
+             function openAppEZ() {
+                  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                  if (/android/i.test(userAgent)) {
+                    // Android specific URL
+                    const androidUrl = "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
+                    window.location.replace(androidUrl);
+                    // If the app is not installed, redirect to the App Store
+                    setTimeout(function() { 
+                      window.location.replace('https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th');
+                    }, 2500);
+                  } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                    // iOS specific URL
+                    const iosUrl = "fmsdev://mobile"; // Custom URL scheme for your app
+                    window.location.replace(iosUrl);
+                    
+                    // If the app is not installed, redirect to the App Store
+                    setTimeout(function() {
+                      // window.location.replace("https://apps.apple.com/us/app/your-app-name/idYOUR_APP_ID");
+                      window.location.replace("https://apps.apple.com/us/app/ezassetplus/id1658483080");
+                    }, 2500);
+                  } else {
+                    // Default URL for web console
+                    window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
+                  }
+                 
         function checkIfAppInstalled(appUrl, storeUrl) {
             var start = new Date().getTime();
             var timeout;
@@ -39,11 +66,12 @@
         }
 
         // เรียกใช้งานฟังก์ชันพร้อม URL ของแอพและหน้าสตอร์
-        openAppOrStore(
-        "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end" ,
-        'https://apps.apple.com/us/app/ezassetplus/id1658483080',
-        'https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th',
-        'https://apps.apple.com/us/app/ezassetplus/id1658483080');
+                 openAppEZ();
+        // openAppOrStore(
+        // "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end" ,
+        // 'https://apps.apple.com/us/app/ezassetplus/id1658483080',
+        // 'https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th',
+        // 'https://apps.apple.com/us/app/ezassetplus/id1658483080');
     </script>
 </body>
 </html>
