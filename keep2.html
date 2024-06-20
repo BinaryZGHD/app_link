@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check App Installation</title>
+</head>
+<body>
+    <script>
+        function openAppOrStore(androidAppUrl, iosAppUrl, androidStoreUrl, iosStoreUrl) {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            if (/android/i.test(userAgent)) {
+                // สำหรับ Android
+                checkIfAppInstalled(androidAppUrl, androidStoreUrl);
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                // สำหรับ iOS
+                checkIfAppInstalled(iosAppUrl, iosStoreUrl);
+            } else {
+                  // Default URL for web console
+                  window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
+            }
+        }
+
+        function checkIfAppInstalled(appUrl, storeUrl) {
+            var start = new Date().getTime();
+            var timeout;
+
+            // ตรวจสอบการติดตั้งแอพ
+            // window.location = appUrl;
+            window.location.replace(appUrl);
+            // ตั้งเวลาเพื่อเช็คว่ามีการติดตั้งหรือไม่
+            timeout = setTimeout(function() {
+                var end = new Date().getTime();
+                if (end - start < 1500) {
+                    // หากไม่ได้ติดตั้ง ให้ไปที่หน้าสตอร์
+                    // window.location = storeUrl;
+                    window.location.replace(storeUrl);
+                }
+            }, 2500);
+        }
+
+        // เรียกใช้งานฟังก์ชันพร้อม URL ของแอพและหน้าสตอร์
+        openAppOrStore(
+        "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end" ,
+        'https://apps.apple.com/us/app/ezassetplus/id1658483080',
+        'https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th',
+        'https://apps.apple.com/us/app/ezassetplus/id1658483080');
+    </script>
+</body>
+</html>
