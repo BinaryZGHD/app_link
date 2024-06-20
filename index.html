@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check Installation #1</title>
+    <title>Check Installation #2</title>
 </head>
 <body>
     
@@ -13,89 +13,78 @@
 
             if (/android/i.test(userAgent)) {
                 // สำหรับ Android
-                document.getElementById('platform-info').innerText = 'Platform:Android'  ;
+                document.getElementById('platform-info').innerText = 'Platform: Android';
                 document.title = "Android Check Open App Installation";
                 checkIfAppInstalled(androidAppUrl, androidStoreUrl);
             } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
                 // สำหรับ iOS
-              document.getElementById('platform-info').innerText = 'Platform:iOS'  ;
+                document.getElementById('platform-info').innerText = 'Platform: iOS';
                 document.title = "iOS Check Open App Installation";
                 checkIfAppInstalled(iosAppUrl, iosStoreUrl);
             } else {
-              document.getElementById('platform-info').innerText = 'Platform:web'  ;
-                document.title = "web Check Open App Installation";
+                document.getElementById('platform-info').innerText = 'Platform: Web';
+                document.title = "Web Check Open App Installation";
                 // Default URL for web console
                 window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
             }
         }
+
         function checkIfAppInstalled(appUrl, storeUrl) {
-                var start = new Date().getTime();
-                var timeout;
+            var start = new Date().getTime();
 
-                // ตรวจสอบการติดตั้งแอพ
-                // window.location = appUrl;
-                window.location.replace(appUrl);
-                // ตั้งเวลาเพื่อเช็คว่ามีการติดตั้งหรือไม่
-                timeout = setTimeout(function () {
-                    var end = new Date().getTime();
-                    if (end - start < 1500) {
-                        // หากไม่ได้ติดตั้ง ให้ไปที่หน้าสตอร์
-                        // window.location = storeUrl;
-                        window.location.replace(storeUrl);
-                    }
-                }, 2500);
-            }
+            // Open the app URL
+            window.location.href = appUrl;
 
+            // Check after a timeout if the app was opened
+            setTimeout(function () {
+                var end = new Date().getTime();
+                if (end - start < 1500) {
+                    // If the app was not installed, redirect to the store
+                    window.location.href = storeUrl;
+                }
+            }, 2500);
+        }
 
-
-            function openAppEZ() {
+        function openAppEZ() {
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
             if (/android/i.test(userAgent)) {
-                
-              document.getElementById('platform-info').innerText = 'Platform: Android'  ;
+                document.getElementById('platform-info').innerText = 'Platform: Android';
                 // Android specific URL
                 const androidUrl = "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
-                window.location.replace(androidUrl);
+                window.location.href = androidUrl;
                 // If the app is not installed, redirect to the App Store
                 setTimeout(function () {
-                    window.location.replace('https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th');
+                    window.location.href = 'https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th';
                 }, 2500);
-            } 
-            
-            else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-              document.getElementById('platform-info').innerText = 'Platform: iOS'  ;
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                document.getElementById('platform-info').innerText = 'Platform: iOS';
                 // iOS specific URL
                 const iosUrl = "fmsdev://mobile"; // Custom URL scheme for your app
-                window.location.replace(iosUrl);
+                window.location.href = iosUrl;
 
                 // If the app is not installed, redirect to the App Store
                 setTimeout(function () {
-                    // window.location.replace("https://apps.apple.com/us/app/your-app-name/idYOUR_APP_ID");
-                    window.location.replace("https://apps.apple.com/us/app/ezassetplus/id1658483080");
+                    window.location.href = "https://apps.apple.com/us/app/ezassetplus/id1658483080";
                 }, 2500);
-            } 
-            
-            
-            
-            else {
-              document.getElementById('platform-info').innerText = 'Platform: Web Other'  ;
+            } else {
+                document.getElementById('platform-info').innerText = 'Platform: Web';
                 // Default URL for web console
-                window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
+                window.location.href = "https://fmsdev.freewillsolutions.com/web-console/#/";
             }
-          
-          window.onload = function() { 
-                // เรียกใช้งานฟังก์ชันพร้อม URL ของแอพและหน้าสตอร์
-         
-                     
-        openAppOrStore(
-        "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end" ,
-        'https://apps.apple.com/us/app/ezassetplus/id1658483080',
-        'https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th',
-        'https://apps.apple.com/us/app/ezassetplus/id1658483080');
+        }
+
+        window.onload = function() { 
+            // เรียกใช้งานฟังก์ชันพร้อม URL ของแอพและหน้าสตอร์
+            openAppOrStore(
+                "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end",
+                "fmsdev://mobile",
+                'https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th',
+                'https://apps.apple.com/us/app/ezassetplus/id1658483080'
+            );
         }
     </script>
  
-    <h1>Check Platform  #1: </h1>
+    <h1>Check Platform #2:</h1>
     <p id="platform-info"></p>
  
 </body>
