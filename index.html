@@ -48,6 +48,8 @@
             function openAppEZ() {
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
             if (/android/i.test(userAgent)) {
+                
+              document.getElementById('platform-info').innerText = 'Platform: Android'  ;
                 // Android specific URL
                 const androidUrl = "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
                 window.location.replace(androidUrl);
@@ -58,6 +60,7 @@
             } 
             
             else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+              document.getElementById('platform-info').innerText = 'Platform: iOS'  ;
                 // iOS specific URL
                 const iosUrl = "fmsdev://mobile"; // Custom URL scheme for your app
                 window.location.replace(iosUrl);
@@ -72,16 +75,25 @@
             
             
             else {
+              document.getElementById('platform-info').innerText = 'Platform: Web Other'  ;
                 // Default URL for web console
                 window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
             }
-            // เรียกใช้งานฟังก์ชันพร้อม URL ของแอพและหน้าสตอร์
-            openAppEZ();
+          
+          window.onload = function() { 
+                // เรียกใช้งานฟังก์ชันพร้อม URL ของแอพและหน้าสตอร์
+            openAppEZ(); 
+                     
         // openAppOrStore(
         // "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end" ,
         // 'https://apps.apple.com/us/app/ezassetplus/id1658483080',
         // 'https://play.google.com/store/apps/details?id=com.fwg.mdc.ez_assets_plus&hl=th',
         // 'https://apps.apple.com/us/app/ezassetplus/id1658483080');
+        }
     </script>
+ 
+    <h1>Check Platform : </h1>
+    <p id="platform-info"></p>
+ 
 </body>
 </html>
