@@ -1,153 +1,39 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deep Learning</title>
-  </head>
-  <body>
-    <div class="container">
-      <p id="case"></p>
-      <button onclick="openAppIGAndroid()">Open App instagram Android</button>
-    </div>
-    <div class="container">
-      <p id="caseAN"></p>
-      <button onclick="openAppEZAndroidM()">Open App EZ Android M</button>
-    </div>
-    <div class="container">
-      <p id="caseAN"></p>
-      <button onclick="openAppEZAndroid()">Open App EZ Android </button>
-    </div>
-    <div class="container">
-      <p id="caseAN"></p>
-      <button onclick="openAppEZAndroid55()">Open App EZ Android 55 </button>
-    </div>
-    <div class="container">
-      <p id="caseIS"></p>
-      <button onclick="openAppEZIOS()">openAppEZS</button>
-    </div>
-    <div class="container">
-      <p id="caseIS"></p>
-      <button onclick="openAppEZ()">Open App EZ IOS</button>
-    </div>
-    <div class="container">
-      <p id="caseEX"></p>
-      <button onclick="openAppEXAMPLE()">Open App EXAMPLE</button>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
     <script>
-      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      (function () {
-        if (isMobile) {
-          document.getElementById("case").textContent =
-            "I am using Mobile browser";
-           
-          
-          document.getElementById("caseAN").textContent =
-            "I am using Mobile browser";
-          
-          document.getElementById("caseIS").textContent =
-            "I am using Mobile browser";
-          
-          document.getElementById("caseEX").textContent =
-            "I am using Mobile browser";
-        } else {
-          document.getElementById("case").textContent =
-            "I am using Desktop/Web browser";
-          
-          document.getElementById("caseAN").textContent =
-            "I am using Mobile browser";
-          
-          document.getElementById("caseIS").textContent =
-            "I am using Mobile browser";
-          
-          document.getElementById("caseEX").textContent =
-            "I am using Mobile browser";
+        function openAppOrStore(androidAppUrl, iosAppUrl, androidStoreUrl, iosStoreUrl) {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+				checkIfAppInstalled(androidAppUrl, androidStoreUrl)
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+				checkIfAppInstalled(iosAppUrl, iosStoreUrl)
+            } else {
+                window.location.replace(window.location.protocol + "//" + window.location.host + "/" + window.location.pathname.split("/")[1] + "/");
+            }
         }
-      })();
-      function openAppIGAndroid() {
-        if (isMobile) {
-          const url =
-            "intent://instagram.com/#Intent;scheme=https;package=com.instagram.android;end";
-
-          window.location.replace(url);
-        } else {
-          window.location.replace("https://www.instagram.com");
+		function checkIfAppInstalled(appUrl, storeUrl) {
+            var start = new Date().getTime();
+            window.location.href = appUrl;
+            setTimeout(function () {
+                var end = new Date().getTime();
+                if (end - start < 1500) {
+					window.location.href = storeUrl;
+                }
+            }, 2500);
         }
-      } 
-      function openAppEZAndroidM() {
-        if (isMobile) {
-          const url =
-            "intent://fmsdev.freewillsolutions.com/mobile#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
-
-          window.location.replace(url);
-        } else {
-          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
+        window.onload = function() {
+            openAppOrStore(
+                "goldsaving://mobile",
+                "goldsaving://",
+                'https://play.google.com/store/apps/details?id=com.fwg.mdc.ylg&hl=th&pli=1',
+                'itms-apps://itunes.apple.com/app/apple-store/id1642893939'
+            );
         }
-      }
-      function openAppEZAndroid() {
-        if (isMobile) {
-          const url =
-            "intent://fmsdev.freewillsolutions.com#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
-
-          window.location.replace(url);
-        } else {
-          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
-        }
-      }
-      function openAppEZAndroid55() {
-        if (isMobile) {
-          const url =
-            "intent://fmsdev.freewillsolutions.com/msms=45445555454477&&mmms=677sss#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
-
-          window.location.replace(url);
-        } else {
-          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
-        }
-      }
-      function openAppEZIOS() {
-        if (isMobile) {
-          const url =
-            "intent://fmsdev.freewillsolutions.com/mobile#Intent;scheme=https;package=com.fwg.mdc.ez-assets-plus;end";
-
-          window.location.replace(url);
-        } else {
-          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
-        }
-      } function openAppEXAMPLE() {
-        if (isMobile) {
-          const url =
-            "intent://www.example.com/mobile#Intent;scheme=https;package=com.fwg.mdc.ez_assets_plus;end";
-
-          window.location.replace(url);
-        } else {
-          window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
-        }
-      }
-      function openAppEZ() {
-  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-  if (/android/i.test(userAgent)) {
-    // Android specific URL
-    const androidUrl =
-      "intent://fmsdev.freewillsolutions.com/mobile#Intent;scheme=https;package=com.fwg.mdc.ez-assets-plus;end";
-    window.location.replace(androidUrl);
-  } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    // iOS specific URL
-    const iosUrl = "fmsdev://mobile"; // Custom URL scheme for your app
-    window.location.replace(iosUrl);
-    
-    // If the app is not installed, redirect to the App Store
-    setTimeout(function() {
-      // window.location.replace("https://apps.apple.com/us/app/your-app-name/idYOUR_APP_ID");
-      window.location.replace("https://apps.apple.com/us/app/ezassetplus/id1658483080");
-    }, 2500);
-  } else {
-    // Default URL for web console
-    window.location.replace("https://fmsdev.freewillsolutions.com/web-console/#/");
-  }
-}
     </script>
-  </body>
+</body>
 </html>
